@@ -242,8 +242,8 @@ Title:`;
 
     const messages = [{ role: "user", content: titlePrompt }];
 
-    // Use chatglm3:6b for title generation (fast and lightweight)
-    const response = await queryModel("chatglm3:6b", messages, 30000);
+    // Use the chairman model for title generation
+    const response = await queryModel(CHAIRMAN_MODEL, messages, 120000);
 
     if (response === null) {
         return "New Conversation";

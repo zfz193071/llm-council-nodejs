@@ -38,18 +38,20 @@ export async function queryModel(model, messages, timeout = 120000) {
 
 /**
  * 并行查询多个模型。
+ * 注意：本地 Ollama 在小内存机器上并行加载多个模型会导致严重争抢。
+ * 改为顺序执行以适配 8GB 内存环境。
  * @param {Array} models - Ollama 模型标识符数组
  * @param {Array} messages - 要发送给每个模型的消息数组
  * @returns {Promise<Object>} 模型标识符到响应对象的映射（失败时为 null）
  */
 export async function queryModelsParallel(models, messages) {
-    const tasks = models.map(model => queryModel(model, messages));
-    const responses = await Promise.all(tasks);
-    
     const result = {};
-    models.forEach((model, index) => {
-        result[model] = responses[index];
-    });
-    
+
+    for (const model of models) {
+        console.log(`查询模型 ${model}...`);
+        const response = await queryModel(model, messages);
+        result[model] = response;
+    }
+
     return result;
 }

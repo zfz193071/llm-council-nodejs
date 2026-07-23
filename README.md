@@ -1,6 +1,4 @@
-# LLM Council (Node.js 版本) | Node.js Version
-
-![llmcouncil](../llm-council/header.jpg)
+# LLM Council (Node.js)
 
 ---
 
@@ -41,12 +39,14 @@ This project was 99% vibe coded as a fun Saturday hack. It's nice and useful to 
 ### 1. Install Dependencies | 安装依赖
 
 **Backend (Node.js) | 后端:**
+
 ```bash
 cd backend
 npm install
 ```
 
 **Frontend | 前端:**
+
 ```bash
 cd frontend
 npm install
@@ -59,6 +59,7 @@ cd ..
 Download from https://ollama.ai
 
 **Pull the models | 拉取模型:**
+
 ```bash
 ollama pull deepseek-r1:7b
 ollama pull chatglm3:6b
@@ -66,6 +67,7 @@ ollama pull kimi:7b
 ```
 
 **Start Ollama | 启动 Ollama:**
+
 ```bash
 ollama serve
 ```
@@ -77,11 +79,7 @@ Ollama will run on `localhost:11434` by default. | Ollama 默认运行在 `local
 Edit `backend/src/config.js` to customize the council | 编辑 `backend/src/config.js` 自定义理事会:
 
 ```javascript
-export const COUNCIL_MODELS = [
-    "deepseek-r1:7b",
-    "chatglm3:6b",
-    "kimi:7b",
-];
+export const COUNCIL_MODELS = ["deepseek-r1:7b", "chatglm3:6b", "kimi:7b"];
 
 export const CHAIRMAN_MODEL = "deepseek-r1:7b";
 ```
@@ -91,12 +89,14 @@ export const CHAIRMAN_MODEL = "deepseek-r1:7b";
 ## Running the Application | 运行应用
 
 **Terminal 1 | 终端 1 (Backend | 后端):**
+
 ```bash
 cd backend
 npm start
 ```
 
 **Terminal 2 | 终端 2 (Frontend | 前端):**
+
 ```bash
 cd frontend
 npm run dev
@@ -118,13 +118,13 @@ Then open http://localhost:5173 in your browser. | 然后在浏览器中打开 h
 
 ## Differences from Python Version | 与 Python 版本的区别
 
-| Feature | Python Version | Node.js Version |
-|---------|---------------|-----------------|
-| Framework | FastAPI | Express.js |
-| HTTP Client | httpx (async) | axios |
-| Concurrency | asyncio.gather() | Promise.all() |
-| Entry Point | `python -m backend.main` | `node src/main.js` |
-| Package Manager | uv | npm |
+| Feature         | Python Version           | Node.js Version    |
+| --------------- | ------------------------ | ------------------ |
+| Framework       | FastAPI                  | Express.js         |
+| HTTP Client     | httpx (async)            | axios              |
+| Concurrency     | asyncio.gather()         | Promise.all()      |
+| Entry Point     | `python -m backend.main` | `node src/main.js` |
+| Package Manager | uv                       | npm                |
 
 The API contract is identical, so the frontend works with either backend. | API 契约相同，因此前端可与任一后端一起使用。
 
